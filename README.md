@@ -2,11 +2,11 @@
 
 [![GoDoc](https://godoc.org/github.com/dreadl0ck/tlsx?status.svg)](https://godoc.org/github.com/dreadl0ck/tlsx)
 
-This is a fork of the [bradleyfalzon/tlsx](github.com/bradleyfalzon/tlsx) package,
+This is a fork of the [bradleyfalzon/tlsx](https://github.com/bradleyfalzon/tlsx) package,
 that was updated to store TLS extensions in the client hello message in the order they were encountered during parsing.
 It was further extended with unit tests, benchmarks and parsing code to extract the TLS server hello message.
 
-This package is used to create JA3 hashes, for fingerprinting TLS client and server hellos in [dreadl0ck/ja3](github.com/dreadl0ck/ja3)
+This package is used to create JA3 hashes, for fingerprinting TLS client and server hellos in [dreadl0ck/ja3](https://github.com/dreadl0ck/ja3)
 Since not all values produced by parsing the hello messages are required to calculate the fingerprint,
 two variations of the data structures are provided for both client and server: *XXXHello()* and *XXXHelloBasic()*.
 The basic datatype contains less fields and does less parsing, which makes it faster and causes less allocations.
