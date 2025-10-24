@@ -2,15 +2,9 @@ package tlsx
 
 import (
 	"encoding/hex"
-	"testing"
-
-<<<<<<< Updated upstream
-	"github.com/google/gopacket"
-	"github.com/google/gopacket/layers"
-=======
 	"github.com/gopacket/gopacket"
 	"github.com/gopacket/gopacket/layers"
->>>>>>> Stashed changes
+	"testing"
 )
 
 func TestClientHello(t *testing.T) {

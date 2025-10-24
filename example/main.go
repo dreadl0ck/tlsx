@@ -4,20 +4,13 @@ import (
 	//"encoding/hex"
 	"flag"
 	"fmt"
-	"log"
-	"os"
-	"sync"
-
-<<<<<<< Updated upstream
-	"github.com/google/gopacket"
-	"github.com/google/gopacket/layers"
-	"github.com/google/gopacket/pcap"
-=======
+	"github.com/dreadl0ck/tlsx"
 	"github.com/gopacket/gopacket"
 	"github.com/gopacket/gopacket/layers"
 	"github.com/gopacket/gopacket/pcap"
->>>>>>> Stashed changes
-	"github.com/dreadl0ck/tlsx"
+	"log"
+	"os"
+	"sync"
 )
 
 func main() {

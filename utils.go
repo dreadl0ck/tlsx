@@ -1,13 +1,8 @@
 package tlsx
 
 import (
-<<<<<<< Updated upstream
-	"github.com/google/gopacket"
-	"github.com/google/gopacket/layers"
-=======
 	"github.com/gopacket/gopacket"
 	"github.com/gopacket/gopacket/layers"
->>>>>>> Stashed changes
 )
 
 // GetServerHello returns a server hello message if the gopacket contains one
