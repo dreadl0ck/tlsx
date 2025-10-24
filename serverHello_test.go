@@ -4,8 +4,13 @@ import (
 	"encoding/hex"
 	"testing"
 
+<<<<<<< Updated upstream
 	"github.com/google/gopacket"
 	"github.com/google/gopacket/layers"
+=======
+	"github.com/gopacket/gopacket"
+	"github.com/gopacket/gopacket/layers"
+>>>>>>> Stashed changes
 )
 
 func TestServerHello(t *testing.T) {
