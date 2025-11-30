@@ -12,13 +12,14 @@ type ClientHello struct {
 	TLSMessage
 	ClientHelloBasic
 
-	Random           []byte
-	SessionID        []byte
-	CompressMethods  []uint8
-	Extensions       map[Extension]uint16 // [Type]Length
-	SignatureAlgs    []uint16
-	OSCP             bool
-	ALPNs            []string
+	Random            []byte
+	SessionID         []byte
+	CompressMethods   []uint8
+	Extensions        map[Extension]uint16 // [Type]Length
+	SignatureAlgs     []uint16
+	OSCP              bool
+	ALPNs             []string
+	SupportedVersions []Version
 }
 
 func (ch ClientHello) String() string {
@@ -34,7 +35,8 @@ func (ch ClientHello) String() string {
 	str += fmt.Sprintf("Groups: %#v\n", ch.SupportedGroups)
 	str += fmt.Sprintf("Points: %#v\n", ch.SupportedPoints)
 	str += fmt.Sprintf("OSCP: %v\n", ch.OSCP)
-	str += fmt.Sprintf("ALPNs: %v", ch.ALPNs)
+	str += fmt.Sprintf("ALPNs: %v\n", ch.ALPNs)
+	str += fmt.Sprintf("Supported Versions: %v", ch.SupportedVersions)
 	return str
 }
 
@@ -270,6 +272,19 @@ func (ch *ClientHello) Unmarshal(payload []byte) error {
 				}
 				ch.ALPNs = append(ch.ALPNs, string(data[:stringLen]))
 				data = data[stringLen:]
+			}
+		case ExtSupportedVersions:
+			if len(data) < 1 {
+				return ErrHandshakeExtBadLength
+			}
+			versionsLen := int(data[0])
+			data = data[1:]
+			if len(data) < versionsLen {
+				return ErrHandshakeExtBadLength
+			}
+			ch.SupportedVersions = make([]Version, versionsLen/2)
+			for i := 0; i < versionsLen/2; i++ {
+				ch.SupportedVersions[i] = Version(data[i*2])<<8 | Version(data[i*2+1])
 			}
 		default:
 			// Other extension where we only care about presence, or presence

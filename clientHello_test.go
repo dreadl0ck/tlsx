@@ -2,9 +2,10 @@ package tlsx
 
 import (
 	"encoding/hex"
+	"testing"
+
 	"github.com/gopacket/gopacket"
 	"github.com/gopacket/gopacket/layers"
-	"testing"
 )
 
 func TestClientHello(t *testing.T) {
@@ -34,6 +35,16 @@ func TestClientHello(t *testing.T) {
 	for i, e := range []uint16{65281, 0, 23, 13, 5, 18, 16, 11, 51, 45, 43, 10, 21} {
 		if hello.AllExtensions[i] != e {
 			t.Fatal("incorrect extension, got", hello.AllExtensions[i], "expected", e)
+		}
+	}
+
+	expectedVersions := []Version{VerTLS13, VerTLS12, VerTLS11, VerTLS10}
+	if len(hello.SupportedVersions) != len(expectedVersions) {
+		t.Fatalf("incorrect number of supported versions, got %d, expected %d", len(hello.SupportedVersions), len(expectedVersions))
+	}
+	for i, v := range expectedVersions {
+		if hello.SupportedVersions[i] != v {
+			t.Errorf("incorrect supported version at index %d, got %s, expected %s", i, hello.SupportedVersions[i], v)
 		}
 	}
 }

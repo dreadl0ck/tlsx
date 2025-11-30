@@ -3,6 +3,7 @@ package tlsx
 import (
 	"errors"
 	"fmt"
+
 	"golang.org/x/crypto/cryptobyte"
 )
 
@@ -72,13 +73,13 @@ type ServerHello struct {
 	SelectedIdentity             uint16
 
 	// HelloRetryRequest extensions
-	Cookie        []byte
+	Cookie []byte
 }
 
 func (m *ServerHello) Unmarshal(data []byte) error {
 
 	if len(data) < 5+4 {
-		return errors.New("Server returned short message")
+		return errors.New("server returned short message")
 	}
 
 	// buf contains a TLS record, with a 5 byte record header and a 4 byte
@@ -240,13 +241,13 @@ func (ch ServerHello) String() string {
 }
 
 type ServerHelloBasic struct {
-	Vers                         uint16
-	Random                       []byte
-	SessionID                    []byte
-	CipherSuite                  uint16
-	CompressionMethod            uint8
-	SelectedGroup                CurveID
-	Extensions                   []uint16
+	Vers              uint16
+	Random            []byte
+	SessionID         []byte
+	CipherSuite       uint16
+	CompressionMethod uint8
+	SelectedGroup     CurveID
+	Extensions        []uint16
 }
 
 // Unmarshal only parses the fields needed for JA3 fingerprinting

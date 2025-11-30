@@ -40,6 +40,7 @@ const (
 	ExtEncryptThenMAC       Extension = 22
 	ExtExtendedMasterSecret Extension = 23
 	ExtSessionTicket        Extension = 35
+	ExtSupportedVersions    Extension = 43
 	ExtNPN                  Extension = 13172 // Next Protocol Negotiation not ratified and replaced by ALPN
 	ExtRenegotiationInfo    Extension = 65281
 )
@@ -70,6 +71,7 @@ var ExtensionReg = map[Extension]string{
 	ExtEncryptThenMAC:       "encrypt_then_mac",
 	ExtExtendedMasterSecret: "extended_master_secret",
 	ExtSessionTicket:        "SessionTicket TLS",
+	ExtSupportedVersions:    "supported_versions",
 	ExtNPN:                  "next_protocol_negotiation",
 	ExtRenegotiationInfo:    "renegotiation_info",
 }
